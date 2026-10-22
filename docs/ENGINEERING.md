@@ -38,9 +38,12 @@ le demander. Après : vérifier le site en ligne.
   Les accents ressortent mal (encodage du dump), le site lui est correct.
 - `python tools/wp.py get|post <route> [json]` : API REST WordPress (`/wp-json/wp/v2/`), mêmes identifiants.
 - `python tools/reprise_rdv.py [--verifier]` : remise en route de la réservation après le blocage PlanetHoster (désactive la pause, contrôle /rdv/ et une étape LatePoint en multipart, remet la pause si le contrôle rate). Lancé toutes les 30 min (9 h, 13 h, 19 h-23 h 30) par la tâche planifiée `saybook-verif-deblocage`, avec l'accord du propriétaire.
+- `python tools/lp.py test|get|post <route>` : API REST LatePoint (`/wp-json/latepoint/v1/`), clé `LATEPOINT_KEY` dans `wp-sites.json`, en-tête `Authorization: Bearer`. Écriture (rendez-vous, clients…) seulement sur demande : ce sont de vrais clients.
 - MCP WordPress : outils `claudeus_wp_*` avec `site: "saybook"`.
 
 ## Leçons
+
+- Le pare-feu de N0C renvoie un 403 (page LiteSpeed) aux requêtes sans User-Agent de navigateur ou avec celui de `python-requests` : toujours fixer un User-Agent dans les outils.
 
 - **22/10/2026, 403 sur tout envoi `multipart/form-data`** : blocage temporaire de PlanetHoster
   (faille PHP `session.upload_progress`), au niveau du serveur, indépendant du WAF de N0C.

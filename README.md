@@ -11,7 +11,7 @@ Consignes : `CLAUDE.md`. Règles techniques : `docs/ENGINEERING.md`. Historique 
 | Réservation en ligne | ✅ remise en route le 23/10/2026 (blocage PlanetHoster levé, plugin de pause désactivé, contrôlé) |
 | MCP WordPress (`saybook`) | ✅ fonctionne (connecté en tant que Suat, id 1) |
 | API WooCommerce (`tools/woo.py`) | ✅ fonctionne |
-| API LatePoint (`/wp-json/latepoint/v1`) | ⏳ pas encore active, maintenant possible (blocage levé) : Paramètres > API > « Enable REST API » + « Generate New Key », clé dans `wp-sites.json` (`saybook.LATEPOINT_KEY`), puis l'ajouter aux outils |
+| API LatePoint (`tools/lp.py`) | ✅ active depuis le 23/10 (clé « Claude », lecture/écriture/suppression) : rendez-vous, clients, services, coiffeurs, disponibilités, codes promo |
 | Dépôt git | GitHub **public** `rogueh24/say-book`, branche `main` (rien de secret dedans : vérifier avant chaque commit). Déploiement automatique opérationnel (`.github/workflows/`) : 5 secrets SFTP saisis, essai à blanc réussi le 22/10 (connexion OK, rien envoyé) |
 
 ## Carte du site (copie des fichiers + dump SQL du 22/10/2026)

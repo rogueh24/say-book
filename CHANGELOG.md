@@ -1,12 +1,12 @@
 # Journal
 
 ## À venir
-- Activer l'API LatePoint (Paramètres > API) + générer une clé, l'ajouter aux outils.
 - Étapes de réservation : couper l'écran des catégories (`steps_show_service_categories`), envisager « n'importe quel coiffeur » (`allow_any_agent`).
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
 - Copie locale de test (MariaDB + WordPress, envois coupés) : pas encore installée.
 
 ## 23/10/2026
+- API LatePoint activée (clé « Claude »), outil `tools/lp.py` testé en lecture (20 services, 3 coiffeurs). Une ancienne clé « Revoked » reste affichée : LatePoint ne propose pas de la supprimer.
 - Blocage multipart levé par PlanetHoster (dans la nuit du 22 au 23). Plugin de pause désactivé par la tâche automatique ; contrôlé le 23 au matin : /rdv/ sans pause, étape LatePoint en multipart OK. Tâche `saybook-verif-deblocage` désactivée.
 
 ## 22/10/2026
