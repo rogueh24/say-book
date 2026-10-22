@@ -23,13 +23,13 @@ Site WordPress de **SAY BARBERSHOP** (barbier) : <https://www.say-book.com>. Ré
 1. **Production.** Ne rien modifier sur le site (contenu, produits, réglages, extensions)
    sans qu'il l'ait demandé. Pour une action qui casse ou supprime : dire ce qui va changer et
    attendre son accord.
-2. **Trois façons d'agir sur le site** :
+2. **Façons d'agir sur le site** :
    - MCP WordPress, site `saybook` (pages, articles, médias, extensions, réglages, menus) ;
+   - `tools/wp.py` : API REST WordPress ;
    - `tools/woo.py` : API WooCommerce (produits, catégories, commandes, codes promo) ;
-   - API LatePoint `/wp-json/latepoint/v1` : **pas encore active** (voir README).
+   - `tools/lp.py` : API LatePoint (rendez-vous, clients, services, coiffeurs, disponibilités) ;
+   - le code maison (`wp-content/`) part sur le serveur par GitHub Actions à chaque push qui le touche.
    **Tester d'abord sur la copie locale** (http://saybook.localhost:8080, `tools/local/demarrer.ps1`).
-   Le code maison (`wp-content/`) se déploie à la main (zip à téléverser) tant que le
-   déploiement automatique n'est pas branché (voir `docs/ENGINEERING.md`).
 3. **Seul notre code est dans `wp-content/`** : plugins maison, futurs mu-plugins et thème
    enfant. Les extensions tierces sont dans `reference/` comme documentation : ne jamais les
    modifier ni les déployer (une mise à jour les écraserait).
