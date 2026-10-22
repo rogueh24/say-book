@@ -12,4 +12,5 @@
 - Plugin `say-book-rdv-pause` créé et installé sur le site (message + coordonnées du salon sur /rdv/).
 - Accès : MCP WordPress `saybook` et `tools/woo.py` testés et fonctionnels.
 - Dépôt GitHub `rogueh24/say-book` (public) + déploiement SFTP automatique ; essai à blanc réussi.
+- Vérification automatique du déblocage programmée (tâche `saybook-verif-deblocage`, 9 h / 13 h / 19 h, lecture seule, notification si débloqué).
 - Dossier organisé : `wp-content/` (notre code), `reference/` (copie du site + SQL), `tools/`, `docs/`.
