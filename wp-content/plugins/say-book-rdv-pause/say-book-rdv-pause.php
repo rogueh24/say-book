@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Say-Book – Pause réservation
  * Description: Affiche un message sur la page RDV et bloque la réservation en ligne pendant l'incident chez l'hébergeur. Désactiver l'extension pour tout remettre comme avant.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Say-Book
  */
 
@@ -13,7 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Textes affichés : à modifier ici si besoin.
 const SBRP_TITRE   = 'Réservation en ligne momentanément indisponible';
 const SBRP_TEXTE   = 'Notre hébergeur effectue une maintenance de sécurité. La prise de rendez-vous en ligne revient très bientôt.';
-const SBRP_CONTACT = 'En attendant, prenez rendez-vous par téléphone : <a href="tel:+33783096054">07 83 09 60 54</a><br>ou par e-mail : <a href="mailto:contact@say-book.com">contact@say-book.com</a><br><br><strong>SAY BARBERSHOP</strong><br>5 rue des 4 frères Mougeotte, <span class="sbrp-nowrap">88100 Saint-Dié-des-Vosges</span>';
+const SBRP_CONTACT = 'En attendant, prenez rendez-vous :';
+const SBRP_TEL     = '07 83 09 60 54';
+const SBRP_EMAIL   = 'contact@say-book.com';
+const SBRP_ADRESSE = '<strong>SAY BARBERSHOP</strong><br>5 rue des 4 frères Mougeotte, <span class="sbrp-nowrap">88100 Saint-Dié-des-Vosges</span>';
 const SBRP_PAGE    = 'rdv'; // slug de la page de réservation
 
 add_action( 'wp_footer', 'sbrp_afficher' );
@@ -29,6 +32,9 @@ function sbrp_afficher() {
 		#sbrp-boite p{margin:0 0 12px}
 		#sbrp-boite a{color:#8a5a2b;font-weight:600;white-space:nowrap}
 		#sbrp-boite .sbrp-nowrap{white-space:nowrap}
+		#sbrp-boite .sbrp-contacts{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 0 16px}
+		#sbrp-boite .sbrp-contacts a{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+		#sbrp-boite .sbrp-contacts svg{width:20px;height:20px;flex:none}
 		#sbrp-boite .sbrp-boutons{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 		#sbrp-boite .sbrp-btn{display:inline-block;padding:10px 18px;border-radius:999px;border:0;background:#111;color:#fff;font-weight:600;text-decoration:none;cursor:pointer;font-size:15px}
 		<?php if ( $sur_page_rdv ) : ?>
@@ -39,7 +45,18 @@ function sbrp_afficher() {
 		<div id="sbrp-boite">
 			<h2 id="sbrp-titre"><?php echo esc_html( SBRP_TITRE ); ?></h2>
 			<p><?php echo esc_html( SBRP_TEXTE ); ?></p>
-			<p><?php echo wp_kses_post( SBRP_CONTACT ); ?></p>
+			<p><?php echo esc_html( SBRP_CONTACT ); ?></p>
+			<div class="sbrp-contacts">
+				<a href="tel:+33<?php echo esc_attr( substr( str_replace( ' ', '', SBRP_TEL ), 1 ) ); ?>" aria-label="Téléphone">
+					<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>
+					<?php echo esc_html( SBRP_TEL ); ?>
+				</a>
+				<a href="mailto:<?php echo esc_attr( SBRP_EMAIL ); ?>" aria-label="E-mail">
+					<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+					<?php echo esc_html( SBRP_EMAIL ); ?>
+				</a>
+			</div>
+			<p><?php echo wp_kses_post( SBRP_ADRESSE ); ?></p>
 			<div class="sbrp-boutons">
 				<?php if ( $sur_page_rdv ) : ?>
 					<a class="sbrp-btn" href="<?php echo esc_url( home_url( '/' ) ); ?>">Retour à l'accueil</a>
