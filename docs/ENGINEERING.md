@@ -37,7 +37,7 @@ le demander. Après : vérifier le site en ligne.
 - `python -I tools/sqlpeek.py reference/<dump>.sql <table> [...]` : sort les lignes en JSON.
   Les accents ressortent mal (encodage du dump), le site lui est correct.
 - `python tools/wp.py get|post <route> [json]` : API REST WordPress (`/wp-json/wp/v2/`), mêmes identifiants.
-- `python tools/reprise_rdv.py [--verifier]` : remise en route de la réservation après le blocage PlanetHoster (désactive la pause, contrôle /rdv/ et une étape LatePoint en multipart, remet la pause si le contrôle rate). Lancé 3 fois par jour par la tâche planifiée `saybook-verif-deblocage`, avec l'accord du propriétaire.
+- `python tools/reprise_rdv.py [--verifier]` : remise en route de la réservation après le blocage PlanetHoster (désactive la pause, contrôle /rdv/ et une étape LatePoint en multipart, remet la pause si le contrôle rate). Lancé toutes les 30 min (9 h, 13 h, 19 h-23 h 30) par la tâche planifiée `saybook-verif-deblocage`, avec l'accord du propriétaire.
 - MCP WordPress : outils `claudeus_wp_*` avec `site: "saybook"`.
 
 ## Leçons

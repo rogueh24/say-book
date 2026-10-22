@@ -12,7 +12,7 @@
 - Plugin `say-book-rdv-pause` créé et installé sur le site (message + coordonnées du salon sur /rdv/).
 - Accès : MCP WordPress `saybook` et `tools/woo.py` testés et fonctionnels.
 - Dépôt GitHub `rogueh24/say-book` (public) + déploiement SFTP automatique ; essai à blanc réussi.
-- Vérification automatique du déblocage programmée (tâche `saybook-verif-deblocage`, 9 h / 13 h / 19 h) : quand c'est débloqué, `tools/reprise_rdv.py` désactive la pause et contrôle la réservation (accord du propriétaire).
+- Vérification automatique du déblocage programmée (tâche `saybook-verif-deblocage`, toutes les 30 min à 9 h, 13 h et de 19 h à 23 h 30) : quand c'est débloqué, `tools/reprise_rdv.py` désactive la pause et contrôle la réservation (accord du propriétaire).
 - Pause RDV 1.0.1 : téléphone et ville sur une seule ligne. Premier déploiement automatique GitHub → site, réussi et vérifié en ligne.
 - Pause RDV 1.0.2 : icônes téléphone / e-mail à la place du texte (déployé, vérifié en largeur téléphone).
 - Dossier organisé : `wp-content/` (notre code), `reference/` (copie du site + SQL), `tools/`, `docs/`.

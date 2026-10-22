@@ -5,7 +5,7 @@
   python tools/reprise_rdv.py --verifier  vérifie seulement, ne change rien.
 
 Codes de sortie : 0 = réservation remise en route et contrôlée, 3 = toujours bloqué (rien changé),
-4 = vérification seule : débloqué, 2 = échec après désactivation (pause réactivée), 1 = autre erreur (rien changé).
+4 = vérification seule : débloqué, 5 = déjà remise en route avant (tout marche, rien changé), 2 = échec après désactivation (pause réactivée), 1 = autre erreur (rien changé).
 Aucun rendez-vous n'est créé : le test LatePoint charge seulement l'étape après le choix d'une prestation.
 """
 import sys
@@ -93,6 +93,9 @@ def main(argv):
     print("Page /rdv/ sans message de pause :", ok_page, "(HTTP %s)" % code_page)
     print("Étape LatePoint en multipart :", ok_lp, "(HTTP %s)" % code_lp)
     if ok_page and ok_lp:
+        if avant != "active":
+            print("Déjà remise en route lors d'un passage précédent : tout fonctionne, rien n'a été changé.")
+            return 5
         print("Réservation remise en route et contrôlée.")
         return 0
 
