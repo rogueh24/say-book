@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Say-Book – Pause réservation
  * Description: Affiche un message sur la page RDV et bloque la réservation en ligne pendant l'incident chez l'hébergeur. Désactiver l'extension pour tout remettre comme avant.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Say-Book
  */
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Textes affichés : à modifier ici si besoin.
 const SBRP_TITRE   = 'Réservation en ligne momentanément indisponible';
 const SBRP_TEXTE   = 'Notre hébergeur effectue une maintenance de sécurité. La prise de rendez-vous en ligne revient très bientôt.';
-const SBRP_CONTACT = 'En attendant, prenez rendez-vous par téléphone : <a href="tel:+33783096054">07 83 09 60 54</a><br>ou par e-mail : <a href="mailto:contact@say-book.com">contact@say-book.com</a><br><br><strong>SAY BARBERSHOP</strong><br>5 rue des 4 frères Mougeotte, 88100 Saint-Dié-des-Vosges';
+const SBRP_CONTACT = 'En attendant, prenez rendez-vous par téléphone : <a href="tel:+33783096054">07 83 09 60 54</a><br>ou par e-mail : <a href="mailto:contact@say-book.com">contact@say-book.com</a><br><br><strong>SAY BARBERSHOP</strong><br>5 rue des 4 frères Mougeotte, <span class="sbrp-nowrap">88100 Saint-Dié-des-Vosges</span>';
 const SBRP_PAGE    = 'rdv'; // slug de la page de réservation
 
 add_action( 'wp_footer', 'sbrp_afficher' );
@@ -27,7 +27,8 @@ function sbrp_afficher() {
 		#sbrp-boite{max-width:460px;width:100%;background:#fff;color:#222;border-radius:14px;padding:28px 24px;text-align:center;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.35)}
 		#sbrp-boite h2{margin:0 0 12px;font-size:21px;line-height:1.3;color:#111}
 		#sbrp-boite p{margin:0 0 12px}
-		#sbrp-boite a{color:#8a5a2b;font-weight:600}
+		#sbrp-boite a{color:#8a5a2b;font-weight:600;white-space:nowrap}
+		#sbrp-boite .sbrp-nowrap{white-space:nowrap}
 		#sbrp-boite .sbrp-boutons{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 		#sbrp-boite .sbrp-btn{display:inline-block;padding:10px 18px;border-radius:999px;border:0;background:#111;color:#fff;font-weight:600;text-decoration:none;cursor:pointer;font-size:15px}
 		<?php if ( $sur_page_rdv ) : ?>
