@@ -4,11 +4,11 @@ Site WordPress + WooCommerce + LatePoint de **SAY BARBERSHOP**.
 Hébergé chez PlanetHoster (World Pro, N0C). **En production : ne rien changer sans demande.**
 Consignes : `CLAUDE.md`. Règles techniques : `docs/ENGINEERING.md`. Historique : `CHANGELOG.md`.
 
-## État au 22/10/2026
+## État au 23/10/2026
 
 | Quoi | État |
 |---|---|
-| Réservation en ligne | **en pause** : PlanetHoster bloque les envois `multipart/form-data` (correctif d'une faille PHP). Plugin `say-book-rdv-pause` actif sur le site. Suivi : https://php-21oct.planethoster.live/ |
+| Réservation en ligne | ✅ remise en route le 23/10/2026 (blocage PlanetHoster levé, plugin de pause désactivé, contrôlé) |
 | MCP WordPress (`saybook`) | ✅ fonctionne (connecté en tant que Suat, id 1) |
 | API WooCommerce (`tools/woo.py`) | ✅ fonctionne |
 | API LatePoint (`/wp-json/latepoint/v1`) | ⏳ pas active : l'enregistrement des réglages LatePoint est lui aussi bloqué. Après déblocage : Paramètres > API > « Enable REST API » + « Generate New Key », clé dans `wp-sites.json` (`saybook.LATEPOINT_KEY`), puis l'ajouter aux outils |
