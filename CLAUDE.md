@@ -6,8 +6,7 @@ Lu au début de chaque conversation, quel que soit le compte. L'état du site es
 
 ## Le projet
 
-Site WordPress de **SAY BARBERSHOP** (barbier, Saint-Dié-des-Vosges), géré par le propriétaire
-pour un ami : <https://www.say-book.com>. Réservation en ligne avec **LatePoint**, boutique
+Site WordPress de **SAY BARBERSHOP** (barbier) : <https://www.say-book.com>. Réservation en ligne avec **LatePoint**, boutique
 **WooCommerce** (pas encore ouverte), thème **Blocksy**, hébergement **PlanetHoster** (World Pro, N0C).
 **Site en production, utilisé tous les jours par de vrais clients.**
 

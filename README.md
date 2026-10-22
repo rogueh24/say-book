@@ -1,6 +1,6 @@
 # say-book.com
 
-Site WordPress + WooCommerce + LatePoint de **SAY BARBERSHOP** (Saint-Dié-des-Vosges), géré pour un ami.
+Site WordPress + WooCommerce + LatePoint de **SAY BARBERSHOP**.
 Hébergé chez PlanetHoster (World Pro, N0C). **En production : ne rien changer sans demande.**
 Consignes : `CLAUDE.md`. Règles techniques : `docs/ENGINEERING.md`. Historique : `CHANGELOG.md`.
 
