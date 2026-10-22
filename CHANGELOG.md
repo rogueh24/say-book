@@ -3,9 +3,9 @@
 ## À venir
 - Étapes de réservation (**en attente de l'avis du gérant du salon**, ne rien changer avant) : couper l'écran des catégories (`steps_show_service_categories`), envisager « n'importe quel coiffeur » (`allow_any_agent`).
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
-- Copie locale de test (MariaDB + WordPress, envois coupés) : pas encore installée.
 
 ## 23/10/2026
+- Copie locale de test installée (WordPress 7.1.3 + PHP 8.4 + MariaDB 10.6, base du 22/10) : pages et étape LatePoint OK, aucune requête ni e-mail ne sort (3 protections). Scripts `tools/local/`.
 - API LatePoint activée (clé « Claude »), outil `tools/lp.py` testé en lecture (20 services, 3 coiffeurs). Une ancienne clé « Revoked » reste affichée : LatePoint ne propose pas de la supprimer.
 - Blocage multipart levé par PlanetHoster (dans la nuit du 22 au 23). Plugin de pause désactivé par la tâche automatique ; contrôlé le 23 au matin : /rdv/ sans pause, étape LatePoint en multipart OK. Tâche `saybook-verif-deblocage` désactivée.
 

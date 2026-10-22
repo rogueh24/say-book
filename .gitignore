@@ -23,3 +23,6 @@ Thumbs.db
 .vscode/
 .idea/
 __pycache__/
+
+# Copie locale de test (WordPress + MariaDB + PHP portables, base avec données clients)
+/local/

@@ -27,6 +27,7 @@ Site WordPress de **SAY BARBERSHOP** (barbier) : <https://www.say-book.com>. Ré
    - MCP WordPress, site `saybook` (pages, articles, médias, extensions, réglages, menus) ;
    - `tools/woo.py` : API WooCommerce (produits, catégories, commandes, codes promo) ;
    - API LatePoint `/wp-json/latepoint/v1` : **pas encore active** (voir README).
+   **Tester d'abord sur la copie locale** (http://saybook.localhost:8080, `tools/local/demarrer.ps1`).
    Le code maison (`wp-content/`) se déploie à la main (zip à téléverser) tant que le
    déploiement automatique n'est pas branché (voir `docs/ENGINEERING.md`).
 3. **Seul notre code est dans `wp-content/`** : plugins maison, futurs mu-plugins et thème

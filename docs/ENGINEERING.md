@@ -11,6 +11,8 @@
 | `dist/` | zips prêts à téléverser | non | non |
 | `reference/` | copie des extensions et thèmes du site + dump SQL | non | **jamais** |
 | `Photos/` | photos fournies par le salon | non | non |
+| `local/` | copie locale de test (WordPress, MariaDB, base avec données clients) | non | **jamais** |
+| `tools/local/` | scripts et réglages pour (re)monter la copie locale | oui | non |
 
 ## Déploiement
 
@@ -35,11 +37,40 @@ le demander. Après : vérifier le site en ligne.
   corbeille. Authentification par mot de passe d'application WordPress (marche pour
   WooCommerce) ou clé `CK`/`CS` si remplie.
 - `python -I tools/sqlpeek.py reference/<dump>.sql <table> [...]` : sort les lignes en JSON.
-  Les accents ressortent mal (encodage du dump), le site lui est correct.
+  Les accents peuvent ressortir mal dans la console Windows : c'est l'affichage, les données sont en UTF-8 correct.
 - `python tools/wp.py get|post <route> [json]` : API REST WordPress (`/wp-json/wp/v2/`), mêmes identifiants.
 - `python tools/reprise_rdv.py [--verifier]` : remise en route de la réservation après le blocage PlanetHoster (désactive la pause, contrôle /rdv/ et une étape LatePoint en multipart, remet la pause si le contrôle rate). Lancé toutes les 30 min (9 h, 13 h, 19 h-23 h 30) par la tâche planifiée `saybook-verif-deblocage`, avec l'accord du propriétaire.
 - `python tools/lp.py test|get|post <route>` : API REST LatePoint (`/wp-json/latepoint/v1/`), clé `LATEPOINT_KEY` dans `wp-sites.json`, en-tête `Authorization: Bearer`. Écriture (rendez-vous, clients…) seulement sur demande : ce sont de vrais clients.
 - MCP WordPress : outils `claudeus_wp_*` avec `site: "saybook"`.
+
+## Copie locale de test
+
+Pour essayer plugins, thème enfant, réglages **avant** le vrai site. Installée le 23/10/2026.
+
+- Démarrer : `powershell -File tools/local/demarrer.ps1` → <http://saybook.localhost:8080> ;
+  arrêter : `tools/local/arreter.ps1`. Admin : `/wp-admin`, compte de test dans
+  `local/ACCES-LOCAL.txt` (jamais versionné, ne sert qu'en local).
+- Composants (gratuits, portables) : MariaDB 10.6.28 dans `local/mariadb` (port 3307, données
+  `local/data`, root sans mot de passe, écoute seulement 127.0.0.1) ; PHP 8.4 NTS (winget
+  `PHP.PHP.NTS.8.4`) avec `local/php.ini` ; serveur PHP intégré + `local/router.php` ;
+  WordPress 7.1.3 dans `local/site` ; WP-CLI `local/dl/wp-cli.phar`.
+- `local/site/wp-content/plugins/<nos plugins>` sont des **jonctions** vers `wp-content/plugins/`
+  du projet : une modification se voit aussitôt en local. Les extensions tierces sont des copies
+  de `reference/plugins`.
+- Base : import du dump `reference/` puis `wp search-replace` de `https://www.say-book.com` vers
+  `http://saybook.localhost:8080`. Les médias (`uploads`) ne sont pas copiés : pas d'images.
+- **Rien ne sort** (la base contient les vrais clients et les vrais accès) :
+  1. `mu-plugins/00-local-securite.php` (copie dans `tools/local/`) : toute requête HTTP bloquée,
+     aucun e-mail envoyé (noté dans `debug.log`), extensions qui contactent l'extérieur forcées
+     inactives (SMS Twilio, WhatsApp, agendas Google/Outlook/Apple, Mailchimp, Short.io,
+     SureMails, Facebook, Site Kit, WooPayments, LiteSpeed, avis Google), bandeau « COPIE LOCALE » ;
+  2. ces extensions aussi désactivées dans la base locale ;
+  3. `php.ini` local : `curl_exec`, `fsockopen`, `stream_socket_client`, `mail` désactivées,
+     `allow_url_fopen = Off` (certaines extensions ouvrent leurs propres connexions).
+  `DISABLE_WP_CRON` et `WP_ENVIRONMENT_TYPE = local` dans `wp-config.php`.
+- WP-CLI : `php -c local/php.ini local/dl/wp-cli.phar --path=local/site --skip-plugins --skip-themes …`
+- Rafraîchir la base avec un nouveau dump : réimporter, refaire le search-replace, relancer la
+  désactivation des extensions (voir le mu-plugin pour la liste).
 
 ## Leçons
 
