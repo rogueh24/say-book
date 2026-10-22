@@ -14,4 +14,5 @@
 - Dépôt GitHub `rogueh24/say-book` (public) + déploiement SFTP automatique ; essai à blanc réussi.
 - Vérification automatique du déblocage programmée (tâche `saybook-verif-deblocage`, 9 h / 13 h / 19 h) : quand c'est débloqué, `tools/reprise_rdv.py` désactive la pause et contrôle la réservation (accord du propriétaire).
 - Pause RDV 1.0.1 : téléphone et ville sur une seule ligne. Premier déploiement automatique GitHub → site, réussi et vérifié en ligne.
+- Pause RDV 1.0.2 : icônes téléphone / e-mail à la place du texte (déployé, vérifié en largeur téléphone).
 - Dossier organisé : `wp-content/` (notre code), `reference/` (copie du site + SQL), `tools/`, `docs/`.
