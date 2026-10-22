@@ -44,5 +44,8 @@ pour un ami : <https://www.say-book.com>. Réservation en ligne avec **LatePoint
 ## Fin de passe
 
 `CHANGELOG.md` (une entrée datée), `README.md` si l'état change, `docs/ENGINEERING.md` si une
-règle ou une leçon s'ajoute, puis commit et push sur le dépôt privé `rogueh24/say-book` (un push ne déploie rien tant que
-le déploiement automatique n'est pas branché).
+règle ou une leçon s'ajoute, puis commit et push sur `rogueh24/say-book`.
+**Le dépôt est public** : jamais d'identifiant, de nom de compte d'hébergement, de nom de
+fichier de base ni de donnée client dans un fichier versionné ou un message de commit.
+**Un push qui touche `wp-content/**` déploie sur le site** : annoncer ce qui part et attendre
+son accord (sauf s'il vient de le demander), puis vérifier le site.

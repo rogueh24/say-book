@@ -12,7 +12,7 @@ Consignes : `CLAUDE.md`. Règles techniques : `docs/ENGINEERING.md`. Historique 
 | MCP WordPress (`saybook`) | ✅ fonctionne (connecté en tant que Suat, id 1) |
 | API WooCommerce (`tools/woo.py`) | ✅ fonctionne |
 | API LatePoint (`/wp-json/latepoint/v1`) | ⏳ pas active : l'enregistrement des réglages LatePoint est lui aussi bloqué. Après déblocage : Paramètres > API > « Enable REST API » + « Generate New Key », clé dans `wp-sites.json` (`saybook.LATEPOINT_KEY`), puis l'ajouter aux outils |
-| Dépôt git | GitHub privé `rogueh24/say-book`, branche `main`. Déploiement automatique opérationnel (`.github/workflows/`) : 5 secrets SFTP saisis, essai à blanc réussi le 22/10 (connexion OK, rien envoyé) |
+| Dépôt git | GitHub **public** `rogueh24/say-book`, branche `main` (rien de secret dedans : vérifier avant chaque commit). Déploiement automatique opérationnel (`.github/workflows/`) : 5 secrets SFTP saisis, essai à blanc réussi le 22/10 (connexion OK, rien envoyé) |
 
 ## Carte du site (copie des fichiers + dump SQL du 22/10/2026)
 - WordPress 7.1.3, thème **Blocksy** (pas de thème enfant), WooCommerce 11.2.1, LatePoint 5.7.5 + Pro Features 1.7.4 et addons (Google/Apple/Outlook Calendar, Mailchimp, SMS Twilio, WhatsApp Meta, Payments WooCommerce, Short.io). Cache LiteSpeed, SEOPress, WPForms Lite, SureMails, Trustindex. PHP 8.4.
