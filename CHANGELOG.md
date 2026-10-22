@@ -1,7 +1,7 @@
 # Journal
 
 ## À venir
-- Étapes de réservation : couper l'écran des catégories (`steps_show_service_categories`), envisager « n'importe quel coiffeur » (`allow_any_agent`).
+- Étapes de réservation (**en attente de l'avis du gérant du salon**, ne rien changer avant) : couper l'écran des catégories (`steps_show_service_categories`), envisager « n'importe quel coiffeur » (`allow_any_agent`).
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
 - Copie locale de test (MariaDB + WordPress, envois coupés) : pas encore installée.
 
