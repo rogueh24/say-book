@@ -1,0 +1,25 @@
+# Copie du site, dump SQL (données clients + secrets), photos : jamais versionnés
+/reference/
+/Photos/
+/dist/
+*.sql
+*.zip
+
+# Identifiants notés localement
+/*admin*.txt
+/*identifiant*.txt
+/*password*.txt
+/*credentials*
+wp-sites.json
+
+# Cœur WordPress : jamais ici
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+
+# OS / éditeurs / Python
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/

@@ -1,0 +1,55 @@
+name: "Déploiement SFTP — say-book.com"
+
+# Envoie le dossier wp-content/ du dépôt vers le wp-content du site.
+# Seuls les fichiers présents dans le dépôt partent (nos plugins maison, mu-plugins, thème enfant) :
+# pas de --delete, les extensions tierces du serveur ne sont jamais touchées.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "wp-content/**"
+  workflow_dispatch:
+    inputs:
+      essai:
+        description: "Essai à blanc : liste ce qui partirait, sans rien envoyer"
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy-say-book
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Installation de lftp"
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: "Déploiement incrémental (lftp mirror)"
+        env:
+          SFTP_SERVER: ${{ secrets.SFTP_SERVER }}
+          SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_PORT: ${{ secrets.SFTP_PORT }}
+          SFTP_REMOTE_PATH: ${{ secrets.SFTP_REMOTE_PATH }}
+          ESSAI: ${{ github.event_name == 'workflow_dispatch' && inputs.essai && '--dry-run' || '' }}
+        run: |
+          for v in SFTP_SERVER SFTP_USERNAME SFTP_PASSWORD SFTP_PORT SFTP_REMOTE_PATH; do
+            [ -n "${!v}" ] || { echo "Secret manquant : $v"; exit 1; }
+          done
+          cat > deploy.lftp <<SCRIPT
+          set sftp:auto-confirm yes
+          set net:max-retries 2
+          set net:timeout 20
+          set mirror:parallel-transfer-count 4
+          open -u "$SFTP_USERNAME","$SFTP_PASSWORD" -p "$SFTP_PORT" sftp://$SFTP_SERVER
+          cd "$SFTP_REMOTE_PATH/wp-content" || exit 1
+          mirror --reverse --ignore-time --verbose --parallel=4 $ESSAI wp-content .
+          SCRIPT
+          lftp -f deploy.lftp
+          rm -f deploy.lftp
