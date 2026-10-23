@@ -5,6 +5,7 @@
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
 
 ## 23/10/2026
+- mu-plugin `say-book-ajustements` (déployé, testé en local) : sur mobile, le popup « Résumé » de LatePoint ne s'ouvre plus tout seul ; l'icône panier l'ouvre toujours (retirer une prestation). La copie locale charge les mu-plugins du projet (`tools/local/01-charge-projet.php`).
 - Copie locale de test installée (WordPress 7.1.3 + PHP 8.4 + MariaDB 10.6, base du 22/10) : pages et étape LatePoint OK, aucune requête ni e-mail ne sort (3 protections). Scripts `tools/local/`.
 - API LatePoint activée (clé « Claude »), outil `tools/lp.py` testé en lecture (20 services, 3 coiffeurs). Une ancienne clé « Revoked » reste affichée : LatePoint ne propose pas de la supprimer.
 - Blocage multipart levé par PlanetHoster (dans la nuit du 22 au 23). Plugin de pause désactivé par la tâche automatique ; contrôlé le 23 au matin : /rdv/ sans pause, étape LatePoint en multipart OK. Tâche `saybook-verif-deblocage` désactivée.
