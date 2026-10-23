@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Fonction « WooCommerce MCP » activée : elle charge l'adaptateur MCP d'Automattic, dont le
+// serveur MCP de LatePoint (/wp-json/latepoint/v1/mcp) a besoin (demandé le 23/10/2026).
+// Retirer cette ligne pour revenir au réglage de l'administration.
+add_filter( 'pre_option_woocommerce_feature_mcp_integration_enabled', fn() => 'yes' );
+
 add_filter( 'litespeed_optm_js_defer_exc', 'saybook_ajustements_js_non_retardes' );
 add_filter( 'litespeed_optm_gm_js_exc', 'saybook_ajustements_js_non_retardes' ); // liste utilisée en « mode invité »
 
