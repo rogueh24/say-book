@@ -1,11 +1,12 @@
 # Journal
 
 ## À venir
-- MCP LatePoint : capacités IA activées (86, visibles via `/wp-json/wp-abilities/v1/abilities`) mais le serveur `/wp-json/latepoint/v1/mcp` répond 404 : il manque sans doute l'adaptateur MCP de WordPress (fonction expérimentale « WooCommerce MCP » ou extension « MCP Adapter »). Lanceur prêt : `tools/mcp-latepoint.mjs` (lit `wp-sites.json`, pont `@automattic/mcp-wordpress-remote@0.5.4`), pas encore ajouté à la config de Claude. Capacités de suppression : à désactiver.
+- Désactiver les capacités de suppression de LatePoint (Paramètres > MCP) : encore actives le 23/10 (7 outils de suppression exposés).
 - Étapes de réservation (**en attente de l'avis du gérant du salon**, ne rien changer avant) : couper l'écran des catégories (`steps_show_service_categories`), envisager « n'importe quel coiffeur » (`allow_any_agent`).
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
 
 ## 23/10/2026
+- MCP LatePoint opérationnel : « WooCommerce MCP » activé par `say-book-ajustements` (charge l'adaptateur MCP d'Automattic, requis par `/wp-json/latepoint/v1/mcp`) ; lanceur `tools/mcp-latepoint.mjs` testé (86 outils) et ajouté à `claude_desktop_config.json` (serveur `latepoint`, actif après redémarrage de l'app).
 - Erreur « reading 'getInstance' » au champ téléphone (étape Vos coordonnées, mobile) : LiteSpeed retardait jQuery et LatePoint. `say-book-ajustements` les exclut du retard (filtres `litespeed_optm_js_defer_exc` et `litespeed_optm_gm_js_exc`, le site est en mode invité). Déployé ; parcours mobile jusqu'à « Vos coordonnées » vérifié sans erreur, puis **confirmé par le propriétaire sur son téléphone** (l'étape passe).
 - Popup « Résumé » LatePoint sur mobile : brièvement modifié puis **remis comme d'origine** à la demande du propriétaire (seule compte une réservation qui fonctionne). La copie locale charge les mu-plugins du projet (`tools/local/01-charge-projet.php`).
 - Copie locale de test installée (WordPress 7.1.3 + PHP 8.4 + MariaDB 10.6, base du 22/10) : pages et étape LatePoint OK, aucune requête ni e-mail ne sort (3 protections). Scripts `tools/local/`.

@@ -41,6 +41,7 @@ le demander. Après : vérifier le site en ligne.
 - `python tools/wp.py get|post <route> [json]` : API REST WordPress (`/wp-json/wp/v2/`), mêmes identifiants.
 - `python tools/reprise_rdv.py [--verifier]` : remise en route de la réservation après le blocage PlanetHoster (désactive la pause, contrôle /rdv/ et une étape LatePoint en multipart, remet la pause si le contrôle rate). Lancé toutes les 30 min (9 h, 13 h, 19 h-23 h 30) par la tâche planifiée `saybook-verif-deblocage`, avec l'accord du propriétaire.
 - `python tools/lp.py test|get|post <route>` : API REST LatePoint (`/wp-json/latepoint/v1/`), clé `LATEPOINT_KEY` dans `wp-sites.json`, en-tête `Authorization: Bearer`. Écriture (rendez-vous, clients…) seulement sur demande : ce sont de vrais clients.
+- MCP LatePoint : serveur `latepoint` dans `%APPDATA%\Claude\claude_desktop_config.json` → `node tools/mcp-latepoint.mjs` (pont `@automattic/mcp-wordpress-remote@0.5.4`, identifiants lus dans `wp-sites.json`). Le serveur MCP de LatePoint n'existe que si l'adaptateur MCP de WordPress est chargé : ici via la fonction WooCommerce « mcp_integration », forcée dans `say-book-ajustements.php`.
 - MCP WordPress : outils `claudeus_wp_*` avec `site: "saybook"`.
 
 ## Copie locale de test
