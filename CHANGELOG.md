@@ -1,6 +1,7 @@
 # Journal
 
 ## À venir
+- MCP LatePoint : capacités IA activées (86, visibles via `/wp-json/wp-abilities/v1/abilities`) mais le serveur `/wp-json/latepoint/v1/mcp` répond 404 : il manque sans doute l'adaptateur MCP de WordPress (fonction expérimentale « WooCommerce MCP » ou extension « MCP Adapter »). Lanceur prêt : `tools/mcp-latepoint.mjs` (lit `wp-sites.json`, pont `@automattic/mcp-wordpress-remote@0.5.4`), pas encore ajouté à la config de Claude. Capacités de suppression : à désactiver.
 - Étapes de réservation (**en attente de l'avis du gérant du salon**, ne rien changer avant) : couper l'écran des catégories (`steps_show_service_categories`), envisager « n'importe quel coiffeur » (`allow_any_agent`).
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
 
