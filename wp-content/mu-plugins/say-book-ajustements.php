@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'wp_footer', 'saybook_ajustements_js', 100 );
 add_filter( 'litespeed_optm_js_defer_exc', 'saybook_ajustements_js_non_retardes' );
+add_filter( 'litespeed_optm_gm_js_exc', 'saybook_ajustements_js_non_retardes' ); // liste utilisée en « mode invité »
 
 /**
  * LiteSpeed Cache retarde tous les scripts jusqu'au premier toucher. Sur certains téléphones,
