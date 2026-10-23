@@ -74,6 +74,7 @@ Pour essayer plugins, thème enfant, réglages **avant** le vrai site. Installé
 
 ## Leçons
 
+- LiteSpeed Cache retarde tout le JavaScript jusqu'au premier toucher (« mode invité ») : jQuery et LatePoint doivent en être exclus, sinon erreurs aléatoires sur mobile. L'exclusion est dans `wp-content/mu-plugins/say-book-ajustements.php` (pas dans les réglages LiteSpeed) ; en mode invité, c'est le filtre `litespeed_optm_gm_js_exc` qui compte.
 - Le pare-feu de N0C renvoie un 403 (page LiteSpeed) aux requêtes sans User-Agent de navigateur ou avec celui de `python-requests` : toujours fixer un User-Agent dans les outils.
 
 - **22/10/2026, 403 sur tout envoi `multipart/form-data`** : blocage temporaire de PlanetHoster

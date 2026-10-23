@@ -5,6 +5,7 @@
 - Nettoyer `latepoint-simple-french` (lourd) et le hook de `latepoint-password-sync`.
 
 ## 23/10/2026
+- Erreur « reading 'getInstance' » au champ téléphone (étape Vos coordonnées, mobile) : LiteSpeed retardait jQuery et LatePoint. `say-book-ajustements` les exclut du retard (filtres `litespeed_optm_js_defer_exc` et `litespeed_optm_gm_js_exc`, le site est en mode invité). Déployé ; parcours mobile jusqu'à « Vos coordonnées » vérifié sans erreur.
 - mu-plugin `say-book-ajustements` (déployé, testé en local) : sur mobile, le popup « Résumé » de LatePoint ne s'ouvre plus tout seul ; l'icône panier l'ouvre toujours (retirer une prestation). La copie locale charge les mu-plugins du projet (`tools/local/01-charge-projet.php`).
 - Copie locale de test installée (WordPress 7.1.3 + PHP 8.4 + MariaDB 10.6, base du 22/10) : pages et étape LatePoint OK, aucune requête ni e-mail ne sort (3 protections). Scripts `tools/local/`.
 - API LatePoint activée (clé « Claude »), outil `tools/lp.py` testé en lecture (20 services, 3 coiffeurs). Une ancienne clé « Revoked » reste affichée : LatePoint ne propose pas de la supprimer.
