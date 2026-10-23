@@ -73,6 +73,20 @@ Pour essayer plugins, thème enfant, réglages **avant** le vrai site. Installé
 - Rafraîchir la base avec un nouveau dump : réimporter, refaire le search-replace, relancer la
   désactivation des extensions (voir le mu-plugin pour la liste).
 
+## Quel accès pour quoi
+
+| Besoin | Accès | Pourquoi |
+|---|---|---|
+| Fiches produits, catégories, codes promo, commandes | `tools/woo.py` (API WooCommerce) | contrôle complet (prix, stock, attributs, catégories, champs SEO), création en série depuis un fichier |
+| Pages, articles, menus, médias, réglages, extensions | MCP `wordpress` (ou `tools/wp.py`) | couvre tout le contenu WordPress |
+| Rendez-vous du jour, déplacer / annuler un RDV, stats | MCP `latepoint` | rapide pour une action ponctuelle |
+| Exports, vérifications ou modifications en série dans LatePoint | `tools/lp.py` (API LatePoint) | scriptable, résultat vérifiable |
+| Code maison, thème enfant, mu-plugins | `wp-content/` → copie locale → push (déploiement) | versionné, testé avant |
+| Sauvegarde complète avant une grosse modification | Duplicator (administration, ou MCP par défaut s'il est branché) | |
+
+Toute création, modification ou suppression de données réelles (clients, rendez-vous, produits
+publiés) : seulement sur demande du propriétaire.
+
 ## Leçons
 
 - LiteSpeed Cache retarde tout le JavaScript jusqu'au premier toucher (« mode invité ») : jQuery et LatePoint doivent en être exclus, sinon erreurs aléatoires sur mobile. L'exclusion est dans `wp-content/mu-plugins/say-book-ajustements.php` (pas dans les réglages LiteSpeed) ; en mode invité, c'est le filtre `litespeed_optm_gm_js_exc` qui compte.
