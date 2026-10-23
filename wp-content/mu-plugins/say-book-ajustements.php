@@ -10,6 +10,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'wp_footer', 'saybook_ajustements_js', 100 );
+add_filter( 'litespeed_optm_js_defer_exc', 'saybook_ajustements_js_non_retardes' );
+
+/**
+ * LiteSpeed Cache retarde tous les scripts jusqu'au premier toucher. Sur certains téléphones,
+ * LatePoint s'exécutait alors avant sa bibliothèque du champ téléphone (erreur « Cannot read
+ * properties of undefined (reading 'getInstance') » à l'étape « Vos coordonnées »). On charge
+ * donc normalement jQuery, les dépendances de LatePoint et LatePoint lui-même.
+ */
+function saybook_ajustements_js_non_retardes( $exclusions ) {
+	return array_merge(
+		(array) $exclusions,
+		array( 'jquery.min.js', 'jquery-migrate.min.js', 'wp-includes/js/dist/hooks', 'wp-includes/js/dist/i18n', 'wp-i18n', 'latepoint' )
+	);
+}
 
 /**
  * Réservation LatePoint sur téléphone : le popup « Résumé » ne s'ouvre que si le client touche
